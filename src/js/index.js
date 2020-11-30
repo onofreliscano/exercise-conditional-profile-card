@@ -27,20 +27,31 @@ function render(variables = {}) {
   // here we ask the logical questions to make decisions on how to build the html
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
+  var varName = variables.name == null ? "Write a name" : variables.name;
+  var varRole = variables.role == null ? "Select a role" : variables.role;
+  var varCity = variables.city == null ? "Select a city" : variables.city;
+  var varCountry =
+    variables.country == null ? "Select a country" : variables.country;
+  var varTwitter = variables.twitter == null ? "NA" : variables.twitter;
+  var varGitHub = variables.github == null ? "NA" : variables.github;
+  var varLinkedIn = variables.linkedin == null ? "NA" : variables.linkedin;
+  var varInstagram = variables.instagram == null ? "NA" : variables.instagram;
+
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
+          
+          <h1>${varName}</h1>
+          <h2>${varRole}</h2>
+          <h3>${varCity}, ${varCountry}</h3>
           <ul class="position-right">
-            <li><a href="https://twitter.com/alesanchezr"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="https://github.com/alesanchezr"><i class="fa fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/alesanchezr"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/alesanchezr"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="https://twitter.com/${varTwitter}"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${varGitHub}"><i class="fa fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/${varLinkedIn}"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${varInstagram}"><i class="fa fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
@@ -61,7 +72,7 @@ window.onload = function() {
     socialMediaPosition: "position-left",
     // social media usernames
     twitter: null,
-    github: "alesanchezr",
+    github: null,
     linkedin: null,
     instagram: null,
     name: null,
